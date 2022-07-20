@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.female-color {
+  background-color: hsla(337, 91%, 68%, 0.745);
+  color: white;
+}
+
+

@@ -1,45 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
-import Button from './components/button'
+import logo from "./logo.svg";
+import "./App.css";
+import CustomButton from "./components/button";
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  CardText,
+  Button,
+} from "reactstrap";
+
+import users from "./assets/mock_users";
 
 function App() {
-  const buttons = [
-    {
-      text: "Boton 1",
-      color: "danger"
-    },
-    {
-      text: "Boton 2",
-      color: "secondary"
-    },
-    {
-      text: "Boton 3",
-      color: "success"
-    },
-    {
-      text: "Boton 4",
-      color: "danger"
-    },
-    {
-      text: "Boton 5",
-      color: "primary"
-    }
-  ]
   return (
     <div className="App">
-      <div className="d-flex justify-content-between w-50 mt-3 mx-auto">
-        {
-          buttons.map((button, index)=> {
-           return <Button key={index} color={button.color} text={button.text}  />
-            
-          })
-        }
-        {/* <Button color={buttons[0].text} text={buttons[0].color}  />
-        <Button color="success" size="big" text="some text" count={8}/>
-        <Button /> */}
+      <div className="d-flex flex-wrap">
+        {users.map((user, index) => {
+          const { gender, name, dob, picture } = user
+          const { title, first, last } = name
+           return <Card className = "female-color" color={`${gender === "male"? "primary": ""}`}
+            style={{
+              width: "18rem",              
+            }}
+          >
+            <img alt="Card image" src={`${picture.medium}`} />
+            <CardBody>
+              <CardTitle tag="h5">{`${title} ${first} ${last}`}</CardTitle>
+              <CardSubtitle className="mb-2" tag="h6" >
+                {`${gender}`}
+              </CardSubtitle>
+              <CardText>
+                {`Age: ${dob.age}`}
+              </CardText>
+              <Button>Button</Button>
+            </CardBody>
+          </Card>;
+        })}
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
