@@ -1,45 +1,36 @@
-import logo from "./logo.svg";
-import "./App.css";
-import CustomButton from "./components/button";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  Button,
-} from "reactstrap";
+import './App.css'
+import CustomButton from './components/button/index'
+import List from './components/list/index'
 
-import users from "./assets/mock_users";
+import users from './assets/mock_users' //Mock data de los usuarios ( array )
 
-function App() {
+function App () {
+  console.log(users)
+  const testUser = [
+    {
+      gender: 'female',
+      name: {
+        title: 'Ms',
+        first: 'Milja',
+        last: 'Wuori'
+      },
+      dob: {
+        date: '1986-10-10T10:21:11.034Z',
+        age: 35
+      },
+      picture: {
+        large: 'https://randomuser.me/api/portraits/women/55.jpg',
+        medium: 'https://randomuser.me/api/portraits/med/women/55.jpg',
+        thumbnail: 'https://randomuser.me/api/portraits/thumb/women/55.jpg'
+      }
+    }
+  ]
   return (
-    <div className="App">
-      <div className="d-flex flex-wrap">
-        {users.map((user, index) => {
-          const { gender, name, dob, picture } = user
-          const { title, first, last } = name
-           return <Card className = "female-color" color={`${gender === "male"? "primary": ""}`}
-            style={{
-              width: "18rem",              
-            }}
-          >
-            <img alt="Card image" src={`${picture.medium}`} />
-            <CardBody>
-              <CardTitle tag="h5">{`${title} ${first} ${last}`}</CardTitle>
-              <CardSubtitle className="mb-2" tag="h6" >
-                {`${gender}`}
-              </CardSubtitle>
-              <CardText>
-                {`Age: ${dob.age}`}
-              </CardText>
-              <Button>Button</Button>
-            </CardBody>
-          </Card>;
-        })}
-      </div>
+    <div className='App'>
+      <List data={users} />
+      <List data={testUser} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
