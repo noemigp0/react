@@ -1,28 +1,55 @@
-import './App.css'
-import { useState } from 'react'
+import "./App.css";
+import { useState } from "react";
+import Circle from "./components/circle/Circle"
 
-function App () {
-  const [title, setTitle] = useState("Hola Koders!")
-  const [isLogged, setIsLogged] = useState(false)
-  let userData = {}
-  
-  const inputHandler = event => {
-    setTitle(event.target.value)
+function App() {
+  // const [title, setTitle] = useState("Hola Koders!");
+  // const [isLogged, setIsLogged] = useState(false);
+  const [color, setColor] = useState();
+  let userData = {};
+
+  const goHandler = () => {
+    setColor("green")
   }
 
-  const loginHandler = () => {
-    setIsLogged(true)
+  const changingHandler = () => {
+    setColor("yellow")
   }
-  const logOutHandler = () => {
-    setIsLogged(false)
+
+  const redHandler = () => {
+    setColor("red")
   }
+
+  // const inputHandler = (event) => {
+  //   setTitle(event.target.value);
+  // };
+
+  // const loginHandler = (event) => {
+  //   console.log(event)
+  //   setIsLogged(true);
+  // };
+  // const logOutHandler = () => {
+  //   setIsLogged(false);
+  // };
 
   return (
-   <div className="App">
-   { !isLogged && <button className='btn btn-success' onClick={loginHandler}>login</button>}
-   { isLogged && <button className='btn btn-warning'  onClick={logOutHandler}>sing out</button>}
-   </div>
-  )
+    <div className="App">
+      <div className="d-flex justify-content-sm-around">
+        <button className="btn btn-success" onClick={goHandler}>
+          Go
+        </button>
+        <button className="btn btn-warning" onClick={changingHandler}>
+          Changing
+        </button>
+        <button className="btn btn-danger" onClick={redHandler}>
+          Stop
+        </button>
+      </div>
 
-  }
-export default App
+      <div className="d-flex justify-content-center mt-5">
+        <Circle color={color}/>
+      </div>
+    </div>
+  );
+}
+export default App;
