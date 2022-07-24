@@ -1,55 +1,79 @@
-import "./App.css";
-import { useState } from "react";
-import Circle from "./components/circle/Circle"
+import './App.css'
+import { useState } from 'react'
+import List from './components/List'
 
-function App() {
-  // const [title, setTitle] = useState("Hola Koders!");
-  // const [isLogged, setIsLogged] = useState(false);
-  const [color, setColor] = useState();
-  let userData = {};
+function App () {
+  const [kodersList, setKodersList] = useState([])
+  const [koderData, setKoderData] = useState({})
 
-  const goHandler = () => {
-    setColor("green")
+  /*{
+    nombre:
+    generacion:
+    email
+  }*/
+  const inputHandler = event => {
+    let property = event.target.name
+    let value = event.target.value
+    console.log(`property: ${property} , value: ${value}`)
+    setKoderData({ ...koderData, [property]: value })
   }
 
-  const changingHandler = () => {
-    setColor("yellow")
+  const guardarKoder = () => {
+    setKodersList([...kodersList, koderData])
   }
-
-  const redHandler = () => {
-    setColor("red")
-  }
-
-  // const inputHandler = (event) => {
-  //   setTitle(event.target.value);
-  // };
-
-  // const loginHandler = (event) => {
-  //   console.log(event)
-  //   setIsLogged(true);
-  // };
-  // const logOutHandler = () => {
-  //   setIsLogged(false);
-  // };
-
   return (
-    <div className="App">
-      <div className="d-flex justify-content-sm-around">
-        <button className="btn btn-success" onClick={goHandler}>
-          Go
-        </button>
-        <button className="btn btn-warning" onClick={changingHandler}>
-          Changing
-        </button>
-        <button className="btn btn-danger" onClick={redHandler}>
-          Stop
-        </button>
-      </div>
-
-      <div className="d-flex justify-content-center mt-5">
-        <Circle color={color}/>
+    <div className='App'>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-12 col-md-6'>
+            <form action='' className='bg-dark text-white p-3 border rounded'>
+              <div className='form-group'>
+                <label htmlFor=''>Nombre:</label>
+                <input
+                  type='text'
+                  className='form-control'
+                  name='nombre'
+                  onChange={inputHandler}
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor=''>Correo</label>
+                <input
+                  type='text'
+                  className='form-control'
+                  name='email'
+                  onChange={inputHandler}
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor=''>Generación</label>
+                <input
+                  type='text'
+                  className='form-control'
+                  name='generacion'
+                  onChange={inputHandler}
+                />
+              </div>
+              <button
+                className='btn btn-success mt-3 ms-auto'
+                onClick={guardarKoder}
+                type='button'
+              >
+                Guardar Koder
+              </button>
+            </form>
+          </div>
+          <div className='col-12 col-md-6 mt-3'>
+            {!kodersList.length ? (
+              <h2>Registra un koder</h2>
+            ) : (
+              <List kodersList={kodersList} />
+            )}
+          </div>
+        </div>
       </div>
     </div>
-  );
+  )
 }
-export default App;
+
+export default App
