@@ -10,6 +10,7 @@ import { CardGroup, Button } from "react-bootstrap";
 
 function App() {
   const [productList, setProductsList] = useState([]);
+  const [total, setTotal] = useState(0)
   // const [productData, setProductData] = useState({});
 
   /*{
@@ -32,11 +33,14 @@ function App() {
     let product = products.filter((cv, index) => {
       return index === id;
     });
+    let precio = product[0].price
     setProductsList([...productList, product[0]]);
+    setTotal( total+precio)
   };
 
   return (
     <div className="App">
+      <div className="row">
       <div className="col-12 col-md-6">
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {products.map((product, index) => {
@@ -64,9 +68,10 @@ function App() {
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {console.log(productList)}
           {!productList.length ? (
-            <h2>Registra un koder</h2>
+            <h2>Agrega un producto</h2>
           ) : (
             productList.map((prod, i) => {
+              console.log(prod)
               const { image, title, price } = prod;
               return (
                 <Card style={{ width: "15rem" }} key={i} name="productKey">
@@ -80,6 +85,10 @@ function App() {
             })
           )}
         </div>
+        <div className="row row-cols-1 row-cols-md-3 g-4">
+          <div>{`Total ${total}`}</div>
+        </div>
+      </div>
       </div>
     </div>
   );
