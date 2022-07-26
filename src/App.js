@@ -1,33 +1,14 @@
 import "./App.css";
 import { useState } from "react";
-import List from "./components/List";
 import products from "./assets/mock_products";
 // import { Card, CardGroup, CardBody, CardText } from "reactstrap";
 import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import { CardGroup, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function App() {
   const [productList, setProductsList] = useState([]);
   const [total, setTotal] = useState(0)
-  // const [productData, setProductData] = useState({});
-
-  /*{
-    nombre:
-    generacion:
-    email
-  }*/
-  // const inputHandler = event => {
-  //   let property = event.target.name
-  //   let value = event.target.value
-  //   console.log(`property: ${property} , value: ${value}`)
-  //   setKoderData({ ...koderData, [property]: value })
-  // }
-
-  // const guardarKoder = () => {
-  //   setKodersList([...kodersList, koderData])
-  // }
+  
 
   const saveProduct = (event, id) => {
     let product = products.filter((cv, index) => {
